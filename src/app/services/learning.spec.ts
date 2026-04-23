@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LearningProgress } from './learning-progress';
+import { Learning } from './learning';
 
-describe('LearningProgress', () => {
-  let service: LearningProgress;
+describe('Learning', () => {
+  let service: Learning;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LearningProgress);
+    service = TestBed.inject(Learning);
   });
 
   it('should be created', () => {

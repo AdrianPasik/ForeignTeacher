@@ -4,15 +4,18 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class VocabularyLoader {
-  parseVocabulary(text:string): Vocabulary{
+  load(text:string): Vocabulary{
     const lines = text.split('\n').filter(line => line.trim() !== '');
     var result = new Vocabulary();
+    var lineNumber:number = 1;
     for(const rawLine of lines) {
       const line = rawLine.trim();
       if(line.includes('|')) {
-        result.addLineToLastChapter(line);
+        result.addLineToLastChapter(lineNumber, line);
+        lineNumber++;
       } else {
         result.chapters.push(new VocabularyChapter(line));
+        lineNumber = 1;
       }
     }
     return result;
@@ -24,31 +27,28 @@ export class Vocabulary {
     this.chapters = [];
   }
 
-  addLineToLastChapter(line: string) {
+  addLineToLastChapter(lineNumber: number, line: string) {
     const values = line.split('|');
     var lastChapter = this.chapters.at(-1);
     if (lastChapter == undefined){
       throw new Error('Something is wrong with language feed')
     }
-    lastChapter.items.push(new VocabularyItem(values[0], values[1]));
+    lastChapter.items.push(new VocabularyItem(lineNumber, values[0], values[1]));
   }
   chapters!:VocabularyChapter[];
 }
 
 export class VocabularyChapter {
-  name!:string;
   items!:VocabularyItem[];
-  constructor(name: string) {
-    this.name = name;
+  constructor(public name: string) {
     this.items = [];
   }
 }
 
 export class VocabularyItem {
-  constructor(text: string, foreignText: string) {
-    this.text = text;
-    this.foreignText = foreignText;
+  constructor(
+    public index: number, 
+    public text: string, 
+    public foreignText: string) {
   }
-  text!:string;
-  foreignText!: string;
 }
