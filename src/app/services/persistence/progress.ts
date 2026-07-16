@@ -42,13 +42,13 @@ export class Progress {
 export class ProgressItem {
   constructor(
     public key: string, 
-    public attempts: string[],
+    public attempt: string,
     public lastAttempt: Date
   ) {
   }
 
   toJSON(): string {
-    const attemptString = this.attempts.join('|');
+    const attemptString = this.attempt;
     const year = this.lastAttempt.getFullYear();
     const month = (this.lastAttempt.getMonth() + 1).toString().padStart(2, "0");
     const day = this.lastAttempt.getDate().toString().padStart(2, "0");
@@ -60,16 +60,16 @@ export class ProgressItem {
 
   static fromJSON(parsedArray: string): ProgressItem {
     const parts = parsedArray.split('|');
-    if (parts.length !== 5) {
+    if (parts.length !== 3) {
       throw new Error(`Invalid CSV format for ProgressItem: ${parsedArray}`);
     }
     
-    const [key, attempt1, attempt2, attempt3, lastAttempt] = parts;
+    const [key, attempt, lastAttempt] = parts;
     
     
     return new ProgressItem(
       key,
-      [attempt1, attempt2, attempt3],
+      attempt,
       new Date(
         parseInt(lastAttempt.substring(0, 4)),     // year
         parseInt(lastAttempt.substring(4, 6)) - 1, // month
