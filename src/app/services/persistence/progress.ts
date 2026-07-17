@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 Format would be
 key|0|0|0|20260101123502
 date is YYYYMMDDHHMMSS
+
+IMPORTANT - key is always in known language
 */
 export class ProgressLoader {
   load(key: string, text: string): Progress {

@@ -21,6 +21,14 @@ export class VocabularyLoader {
     return result;
   }
 }
+/*
+EN(known language) -> DE(learned language) example
+1
+word|wort
+happy|lustig
+
+IMPORTANT - first word is always in known language
+*/
 
 export class Vocabulary {
   constructor() {
