@@ -11,12 +11,18 @@ date is YYYYMMDDHHMMSS
 IMPORTANT - key is always in known language
 */
 export class ProgressLoader {
-  load(key: string, text: string): Progress {
-    throw new Error();
+  static load(key: string): Progress {
+    const lsString = localStorage.getItem(key);
+    if (!lsString) {
+      return new Progress(key, []);
+    }
+    return Progress.fromJSON(key, lsString);
+
   }
 
-  write(progress: Progress): string {
-    throw new Error();
+  static write(progress: Progress) {
+    const progressString = progress.toJSON();
+    localStorage.setItem(progress.key, progressString);
   }
 }
 
