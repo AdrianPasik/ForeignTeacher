@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { VocabularyLoader } from './vocabulary';
+import { VocabularyParser } from './vocabulary';
 
 describe('VocabularyLoader', () => {
-  let service: VocabularyLoader;
+  let service: VocabularyParser;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(VocabularyLoader);
+    service = TestBed.inject(VocabularyParser);
   });
 
   it('should give empty object on empty content', () => {

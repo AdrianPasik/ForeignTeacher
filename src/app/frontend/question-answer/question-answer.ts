@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Progress } from '../../services/persistence/progress';
+import { Learning } from '../../services/learning';
 
 @Component({
   selector: 'app-question-answer',
@@ -7,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './question-answer.css',
 })
 export class QuestionAnswer {
-
+  selectedLanguage = input.required<string>();
+  learning = input.required<Learning>();
 }

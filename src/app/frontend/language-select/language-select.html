@@ -1,6 +1,6 @@
 <div>
     <label for="lang-scenario">Pick learning scenario</label>
-    <select id="lang-scenario" [value]="selectedOption()"
+    <select id="lang-scenario" [value]="selectedLanguageKey()"
         (change)="onSelectionChange($event)">>
         <option 
           *ngFor="let option of options" 
@@ -8,4 +8,9 @@
           {{ option.label }}
         </option>
     </select>
+    <div>
+        Selected option
+        {{ selectedLanguageKey() }}
+    </div>
+    <app-question-answer [selectedLanguage]="this.selectedLanguageKey()" [learning]="this.learning" />
 </div>

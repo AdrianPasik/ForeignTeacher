@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root',
 })
-export class VocabularyLoader {
-  load(text:string): Vocabulary{
+export class VocabularyParser {
+  static load(text:string): Vocabulary{
     const lines = text.split('\n').filter(line => line.trim() !== '');
     var result = new Vocabulary();
     var lineNumber:number = 1;
