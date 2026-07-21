@@ -1,1 +1,11 @@
-<p>language-select works!</p>
+<div>
+    <label for="lang-scenario">Pick learning scenario</label>
+    <select id="lang-scenario" [value]="selectedOption()"
+        (change)="onSelectionChange($event)">>
+        <option 
+          *ngFor="let option of options" 
+          [value]="option.value">
+          {{ option.label }}
+        </option>
+    </select>
+</div>
