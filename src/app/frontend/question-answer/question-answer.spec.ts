@@ -13,6 +13,7 @@ describe('QuestionAnswer', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(QuestionAnswer);
+    fixture.componentRef.setInput("selectedLanguage", "plde");
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

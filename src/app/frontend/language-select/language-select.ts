@@ -5,52 +5,63 @@ import { Vocabulary, VocabularyParser } from '../../services/persistence/vocabul
 import { QuestionAnswer } from "../question-answer/question-answer";
 import { Learning } from '../../services/learning';
 import { ProgressLoader } from '../../services/persistence/progress';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
-    selector: 'app-language-select',
-    imports: [CommonModule, QuestionAnswer],
-    templateUrl: './language-select.html',
-    styleUrl: './language-select.css',
+  selector: 'app-language-select',
+  templateUrl: './language-select.html',
+  styleUrl: './language-select.css',
+  imports: [CommonModule, QuestionAnswer]
 })
 export class LanguageSelect {
-    private http = inject(HttpClient);
-    options: ComboBoxOption[] = [
-        { value: 'plde', label: 'PL -> DE' },
-        { value: 'test', label: 'PL -> EN' }
-    ];
-    selectedLanguageKey = signal(this.options[0].value);
-    learning: Learning = this.createLearning(this.selectedLanguageKey());
+  private http = inject(HttpClient);
 
-    private readonly vocabulary = signal<string>("");
+  options: ComboBoxOption[] = [
+    { value: 'plde', label: 'PL -> DE' },
+    { value: 'plen', label: 'PL -> EN' }
+  ];
 
-    private loadVocabulary(): void {
-        this.http
-            .get<string>(`/vocabulary/${this.selectedLanguageKey}.txt`)
-            .subscribe(output => {
-                this.vocabulary.set(output);
-            });
+  selectedLanguageKey = signal(this.options[0].value);
+
+  learning = signal<Learning | null>(null);
+  isLoading = signal(false);
+
+  constructor() {
+    this.reloadLearning();
+  }
+
+  async onSelectionChange(event: Event): Promise<void> {
+    const value = (event.target as HTMLSelectElement).value;
+    this.selectedLanguageKey.set(value);
+    await this.reloadLearning();
+  }
+
+  private async reloadLearning(): Promise<void> {
+    this.isLoading.set(true);
+
+    try {
+      const learning = await this.createLearning(this.selectedLanguageKey());
+      this.learning.set(learning);
+    } finally {
+      this.isLoading.set(false);
     }
+  }
 
-    getVocabulary(): string {
-        return this.vocabulary();
-    }
+  private async createLearning(key: string): Promise<Learning> {
+    const text = await firstValueFrom(
+      this.http.get(`/vocabulary/${key}.txt`, {
+        responseType: 'text'
+      })
+    );
 
-    onSelectionChange(event: Event): void {
-        const selectElement = event.target as HTMLSelectElement;
-        const selectedValue = selectElement.value;
-        this.selectedLanguageKey.set(selectedValue);
-        this.learning = this.createLearning(selectedValue);
-    }
+    const progress = ProgressLoader.load(key);
+    const vocabulary = VocabularyParser.load(text);
 
-    private createLearning(key: string): Learning {
-        this.loadVocabulary();
-        const progress = ProgressLoader.load(key);
-        const vocabulary = VocabularyParser.load(this.getVocabulary());
-        return new Learning(progress, vocabulary);
-    }
+    return new Learning(progress, vocabulary);
+  }
 }
 
 interface ComboBoxOption {
-    value: string;
-    label: string;
+  value: string;
+  label: string;
 }

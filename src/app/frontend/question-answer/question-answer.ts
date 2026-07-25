@@ -10,5 +10,5 @@ import { Learning } from '../../services/learning';
 })
 export class QuestionAnswer {
   selectedLanguage = input.required<string>();
-  learning = input.required<Learning>();
+  //learning = input.required<Learning>();
 }
