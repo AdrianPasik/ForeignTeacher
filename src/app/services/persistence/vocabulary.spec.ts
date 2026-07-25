@@ -12,7 +12,7 @@ describe('VocabularyLoader', () => {
 
   it('should give empty object on empty content', () => {
     expect(service).toBeTruthy();
-    let output = service.load("");
+    let output = VocabularyParser.load("");
     expect(output.chapters).not.toBe(undefined);
   });
 
@@ -25,7 +25,7 @@ describe('VocabularyLoader', () => {
 
     Chapter2
     bad|schlecht`;
-    let output = service.load(content);
+    let output = VocabularyParser.load(content);
     expect(output.chapters.length).toBe(2);
     expect(output.chapters[0].name).toBe("Chapter1");
     expect(output.chapters[1].name).toBe("Chapter2");
