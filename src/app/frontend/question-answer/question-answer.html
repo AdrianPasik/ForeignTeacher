@@ -1,5 +1,14 @@
 <div>
 <p>question-answer works!</p>
 <h2>Selected key {{ selectedLanguage() }}</h2>
+<div>
+      <label>{{ knownLanguageText() }}</label>
+      <input 
+        [value]="userTranslation"
+        (input)="onInputChange($event)"
+        type="text">
+      <button (click)="onButtonClick()">{{ checkAnswerCaption() }}</button>
+    </div>
+<app-display-result />
 </div>
 

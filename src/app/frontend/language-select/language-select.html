@@ -12,5 +12,5 @@
         Selected option
         {{ selectedLanguageKey() }}
     </div>
-    <app-question-answer [selectedLanguage]="this.selectedLanguageKey()" />
+    <app-question-answer [selectedLanguage]="this.selectedLanguageKey()" [learningService]="this.learning()" />
 </div>
