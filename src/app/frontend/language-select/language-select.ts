@@ -6,12 +6,13 @@ import { QuestionAnswer } from "../question-answer/question-answer";
 import { Learning } from '../../services/learning';
 import { ProgressLoader } from '../../services/persistence/progress';
 import { firstValueFrom } from 'rxjs';
+import { ViewVocabulary } from "../view-vocabulary/view-vocabulary";
 
 @Component({
   selector: 'app-language-select',
   templateUrl: './language-select.html',
   styleUrl: './language-select.css',
-  imports: [CommonModule, QuestionAnswer]
+  imports: [CommonModule, QuestionAnswer, ViewVocabulary]
 })
 export class LanguageSelect {
   private http = inject(HttpClient);
@@ -22,12 +23,15 @@ export class LanguageSelect {
   ];
 
   selectedLanguageKey = signal(this.options[0].value);
-
   learning = signal<Learning | null>(null);
   isLoading = signal(false);
 
   constructor() {
     this.reloadLearning();
+  }
+
+  get vocabulary(): Vocabulary | null {
+    return this.learning()?.vocabulary ?? null;
   }
 
   async onSelectionChange(event: Event): Promise<void> {

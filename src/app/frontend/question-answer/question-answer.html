@@ -4,8 +4,8 @@
 <div>
       <label>{{ knownLanguageText() }}</label>
       <input 
-        [value]="userTranslation"
-        (input)="onInputChange($event)"
+        [value]="userTranslation()"
+        (input)="userTranslation.set($event.target.value)"
         type="text">
       <button (click)="onButtonClick()">{{ checkAnswerCaption() }}</button>
     </div>

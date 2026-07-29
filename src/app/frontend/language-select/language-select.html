@@ -12,5 +12,6 @@
         Selected option
         {{ selectedLanguageKey() }}
     </div>
+    <app-view-vocabulary [vocabulary]="this.vocabulary" />
     <app-question-answer [selectedLanguage]="this.selectedLanguageKey()" [learningService]="this.learning()" />
 </div>
