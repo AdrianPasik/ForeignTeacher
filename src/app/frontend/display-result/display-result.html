@@ -1,1 +1,11 @@
-<p>display-result works!</p>
+<div class="display-result-container">
+    @if(this.progressService()) {
+        <div>
+            Service is up
+        </div>
+    } @else {
+        <div>
+            Nothing to display
+        </div>
+    }
+</div>

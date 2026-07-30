@@ -14,7 +14,7 @@ describe('ViewVocabulary', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(ViewVocabulary);
-    fixture.componentRef.setInput("vocabulary", new Vocabulary());
+    fixture.componentRef.setInput("vocabularyService", new Vocabulary());
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

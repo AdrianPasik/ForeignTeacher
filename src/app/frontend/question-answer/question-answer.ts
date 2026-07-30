@@ -16,6 +16,9 @@ export class QuestionAnswer {
     userTranslation = signal("");
     checkAnswerCaption = signal("Check");
 
+    get progressService(): Progress | null {
+        return this.learningService()?.progress ?? null;
+    }
     onInputChange(event: any): void {
         this.userTranslation.set(event.target.value);
     }

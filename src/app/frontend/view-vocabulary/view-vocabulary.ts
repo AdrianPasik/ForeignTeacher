@@ -9,9 +9,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './view-vocabulary.css',
 })
 export class ViewVocabulary {
-  vocabulary = input.required<Vocabulary | null>();
+  vocabularyService = input.required<Vocabulary | null>();
 
   get chapters(): VocabularyChapter[] {
-    return this.vocabulary()?.chapters ?? [];
+    return this.vocabularyService()?.chapters ?? [];
   }
 }

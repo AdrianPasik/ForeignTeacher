@@ -9,6 +9,6 @@
         type="text">
       <button (click)="onButtonClick()">{{ checkAnswerCaption() }}</button>
     </div>
-<app-display-result />
+<app-display-result [progressService]="this.progressService" />
 </div>
 
