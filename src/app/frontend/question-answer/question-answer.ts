@@ -2,10 +2,11 @@ import { Component, Input, input, Signal, signal } from '@angular/core';
 import { Progress } from '../../services/persistence/progress';
 import { Learning } from '../../services/learning';
 import { DisplayResult } from "../display-result/display-result";
+import { MatButtonModule } from "@angular/material/button"
 
 @Component({
     selector: 'app-question-answer',
-    imports: [DisplayResult],
+    imports: [DisplayResult, MatButtonModule],
     templateUrl: './question-answer.html',
     styleUrl: './question-answer.css',
 })
@@ -15,6 +16,8 @@ export class QuestionAnswer {
     knownLanguageText = signal("");
     userTranslation = signal("");
     checkAnswerCaption = signal("Check");
+    nextQuestionCaption = signal("Next");
+    learningMessage = signal("Try next challenge");
 
     get progressService(): Progress | null {
         return this.learningService()?.progress ?? null;
@@ -23,7 +26,7 @@ export class QuestionAnswer {
         this.userTranslation.set(event.target.value);
     }
 
-    onButtonClick(): void {
+    checkAnswerClick(): void {
         if (this.learningService() == null) {
             console.error('Learning service was not injected properly');
         }
@@ -31,5 +34,11 @@ export class QuestionAnswer {
 
         // Empty logic for now
         console.log('Button clicked');
+    }
+
+    nextQuestionClick(): void {
+        if (this.learningService() == null) {
+            console.error('Learning service was not injected properly');
+        }
     }
 }

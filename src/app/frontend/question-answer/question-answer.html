@@ -2,12 +2,14 @@
 <p>question-answer works!</p>
 <h2>Selected key {{ selectedLanguage() }}</h2>
 <div>
+      <label>{{ learningMessage() }} </label>
       <label>{{ knownLanguageText() }}</label>
       <input 
         [value]="userTranslation()"
         (input)="userTranslation.set($event.target.value)"
         type="text">
-      <button (click)="onButtonClick()">{{ checkAnswerCaption() }}</button>
+      <button matButton="outlined" (click)="checkAnswerClick()">{{ checkAnswerCaption() }}</button>
+      <button matButton="outlined" (click)="nextQuestionClick()">{{ nextQuestionCaption() }}</button>
     </div>
 <app-display-result [progressService]="this.progressService" />
 </div>
