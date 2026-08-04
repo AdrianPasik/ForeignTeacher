@@ -1,11 +1,9 @@
 <div class="lang-select-container">
     <label for="lang-scenario">Pick learning scenario</label>
-    <select id="lang-scenario" [value]="selectedLanguageKey()"
-        (change)="onSelectionChange($event)">>
-        <option 
-          *ngFor="let option of options" 
-          [value]="option.value">
-          {{ option.label }}
+    <select id="lang-scenario" [value]="selectedLanguageKey()" (change)="onSelectionChange($event)">
+        >
+        <option *ngFor="let option of options" [value]="option.value">
+            {{ option.label }}
         </option>
     </select>
     <div>
@@ -13,5 +11,8 @@
         {{ selectedLanguageKey() }}
     </div>
     <app-view-vocabulary [vocabularyService]="this.vocabulary" />
-    <app-question-answer [selectedLanguage]="this.selectedLanguageKey()" [learningService]="this.learning()" />
+    <app-question-answer
+        [selectedLanguage]="this.selectedLanguageKey()"
+        [learningService]="this.learning()"
+    />
 </div>

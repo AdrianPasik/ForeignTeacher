@@ -1,18 +1,14 @@
 <div class="display-result-container">
-    @if(this.progressService()) {
-        @for(item of this.progressService()?.items; track item) {
+    @if (this.progressService()) {
+        @for (item of this.progressService()?.items; track item) {
             <div class="result-item">
                 <div>{{ item.key }}</div>
                 <div>{{ item.attempt }}</div>
                 <div>{{ item.lastAttempt }}</div>
             </div>
         }
-        <div>
-            
-        </div>
+        <div></div>
     } @else {
-        <div>
-            Nothing to display
-        </div>
+        <div>Nothing to display</div>
     }
 </div>

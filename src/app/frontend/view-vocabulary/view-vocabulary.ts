@@ -3,15 +3,15 @@ import { Vocabulary, VocabularyChapter } from '../../services/persistence/vocabu
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-view-vocabulary',
-  imports: [CommonModule],
-  templateUrl: './view-vocabulary.html',
-  styleUrl: './view-vocabulary.css',
+    selector: 'app-view-vocabulary',
+    imports: [CommonModule],
+    templateUrl: './view-vocabulary.html',
+    styleUrl: './view-vocabulary.css',
 })
 export class ViewVocabulary {
-  vocabularyService = input.required<Vocabulary | null>();
+    vocabularyService = input.required<Vocabulary | null>();
 
-  get chapters(): VocabularyChapter[] {
-    return this.vocabularyService()?.chapters ?? [];
-  }
+    get chapters(): VocabularyChapter[] {
+        return this.vocabularyService()?.chapters ?? [];
+    }
 }

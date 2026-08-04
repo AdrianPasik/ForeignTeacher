@@ -10,7 +10,7 @@ describe('Learning', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({});
         let vocabulary = new Vocabulary();
-        let progress = new Progress("test", []);
+        let progress = new Progress('test', []);
         service = new Learning(progress, vocabulary);
     });
 

@@ -8,8 +8,8 @@ import { Vocabulary } from './persistence/vocabulary';
 export class Learning {
     constructor(
         public progress: Progress,
-        public vocabulary: Vocabulary
-    ) { }
+        public vocabulary: Vocabulary,
+    ) {}
 
     getNextPhrase(): NextPhrase | undefined {
         /// We check Vocabulary and then join it with Progress
@@ -20,11 +20,11 @@ export class Learning {
             for (const item of vocabularyChapter.items) {
                 var result = this.searchProgress(item.text);
                 // empty progress meaning user haven't tried it or he did with failure
-                if ((result && result.attempt == "1") || !result) {
+                if ((result && result.attempt == '1') || !result) {
                     return {
                         text: item.text,
-                        foreignPhrase: item.foreignText
-                    }
+                        foreignPhrase: item.foreignText,
+                    };
                 }
             }
             // not found, 5% chance to repeat
@@ -33,8 +33,8 @@ export class Learning {
                 const item = vocabularyChapter.items[randomIndex];
                 return {
                     text: item.text,
-                    foreignPhrase: item.foreignText
-                }
+                    foreignPhrase: item.foreignText,
+                };
             }
         }
         return undefined;
@@ -45,25 +45,24 @@ export class Learning {
         if (answer.notFound) {
             throw new Error(`Key '${key}' not found`);
         }
-        if(answer.correct) {
-            const item = this.progress.items.find(element => element.key == key);
+        if (answer.correct) {
+            const item = this.progress.items.find((element) => element.key == key);
             if (!item) {
-                this.progress.items.push(new ProgressItem(key, "0", new Date()));
+                this.progress.items.push(new ProgressItem(key, '0', new Date()));
                 ProgressLoader.write(this.progress);
                 return;
             }
         }
     }
 
-
     private searchProgress(key: string): ProgressItem | undefined {
-        const item = this.progress.items.find(item => item.key === key);
+        const item = this.progress.items.find((item) => item.key === key);
         return item ?? undefined;
     }
 
     private isCorrect(key: string, userInput: string): Answer {
         for (const chapter of this.vocabulary.chapters) {
-            const item = chapter.items.find(item => key === item.foreignText);
+            const item = chapter.items.find((item) => key === item.foreignText);
             if (item) {
                 const isCorrect = userInput === item.text;
                 return {
@@ -81,8 +80,6 @@ export class Learning {
     private checkChance(chance: number): boolean {
         return Math.random() < chance / 100;
     }
-
-
 }
 
 export interface Answer {
@@ -94,5 +91,3 @@ export interface NextPhrase {
     text: string;
     foreignPhrase: string;
 }
-
-

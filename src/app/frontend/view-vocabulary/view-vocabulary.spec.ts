@@ -4,22 +4,21 @@ import { ViewVocabulary } from './view-vocabulary';
 import { Vocabulary } from '../../services/persistence/vocabulary';
 
 describe('ViewVocabulary', () => {
-  let component: ViewVocabulary;
-  let fixture: ComponentFixture<ViewVocabulary>;
+    let component: ViewVocabulary;
+    let fixture: ComponentFixture<ViewVocabulary>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ViewVocabulary]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [ViewVocabulary],
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(ViewVocabulary);
-    fixture.componentRef.setInput("vocabularyService", new Vocabulary());
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+        fixture = TestBed.createComponent(ViewVocabulary);
+        fixture.componentRef.setInput('vocabularyService', new Vocabulary());
+        component = fixture.componentInstance;
+        await fixture.whenStable();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
