@@ -1,3 +1,11 @@
 .question-answer-container {
     border: 1px red solid;
 }
+
+.centered {
+    text-align: center;
+}
+
+.nextToken {
+    font-weight: bold;
+}

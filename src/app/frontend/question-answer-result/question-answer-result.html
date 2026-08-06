@@ -1,0 +1,19 @@
+<p>question-answer-result works!</p>
+<div class="question-answer-result-container">
+    <div>
+        @if(success()) {
+        <div>
+            <mat-icon class="icon-position icon-color-success" aria-hidden="false" aria-label="Example home icon"
+                fontIcon="check">
+            </mat-icon>
+            <span>Correct answer</span>
+        </div>
+        } @else {
+        <div>
+            <mat-icon class="icon-position icon-color-failure" aria-hidden="false" aria-label="Example home icon"
+                fontIcon="cancel"></mat-icon>
+                <span>Wrong answer</span>
+            </div>
+        }
+    </div>
+</div>

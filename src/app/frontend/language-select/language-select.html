@@ -10,9 +10,20 @@
         Selected option
         {{ selectedLanguageKey() }}
     </div>
-    <app-view-vocabulary [vocabularyService]="this.vocabulary" />
+    <div>
+        <mat-slide-toggle [checked]="this.vocabularyVisible()" (change)="onVocabularyVisibleChange($event)">Show vocabulary</mat-slide-toggle>
+    </div>
+    <div>
+        <mat-slide-toggle [checked]="this.progressVisible()" (change)="onProgressVisibleChange($event)">Show progress</mat-slide-toggle>
+    </div>
+    @if(this.vocabularyVisible()) {
+        <app-view-vocabulary [vocabularyService]="this.vocabulary" />
+    }
     <app-question-answer
         [selectedLanguage]="this.selectedLanguageKey()"
         [learningService]="this.learning()"
     />
+    @if(this.progressVisible()) {
+        <app-display-result [progressService]="this.progress" />
+    }
 </div>

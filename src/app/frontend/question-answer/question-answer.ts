@@ -3,21 +3,33 @@ import { Progress } from '../../services/persistence/progress';
 import { Learning } from '../../services/learning';
 import { DisplayResult } from '../display-result/display-result';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { QuestionAnswerResult } from "../question-answer-result/question-answer-result";
+import { single } from 'rxjs';
 
 @Component({
     selector: 'app-question-answer',
-    imports: [DisplayResult, MatButtonModule],
+    imports: [QuestionAnswerResult, DisplayResult, MatButtonModule, FormsModule, MatFormFieldModule, MatInputModule],
     templateUrl: './question-answer.html',
     styleUrl: './question-answer.css',
 })
 export class QuestionAnswer {
     selectedLanguage = input.required<string>();
     learningService = input.required<Learning | null>();
-    knownLanguageText = signal('');
+    answerResultVisible = signal(false);
+    knownLanguageCaption = signal("Translate: ");
+    knownLanguageText = signal('TestPLToken');
     userTranslation = signal('');
-    checkAnswerCaption = signal('Check');
-    nextQuestionCaption = signal('Next');
-    learningMessage = signal('Try next challenge');
+    checkAnswerButtonCaption = signal('Check');
+    nextQuestionButtonCaption = signal('Next');
+    repeatQuestionThisChapterButtonCaption = signal('Repeat chapter');
+    repeatQuestionRandomChapterButtonCaption = signal('Repeat item across chapters');
+    nextQuestionSuccess = signal(false);
+    nextQuestionMessage = signal('TestMessage2');
+    learningMessage = signal('Translate this word');
+
 
     get progressService(): Progress | null {
         return this.learningService()?.progress ?? null;
@@ -40,5 +52,22 @@ export class QuestionAnswer {
         if (this.learningService() == null) {
             console.error('Learning service was not injected properly');
         }
+        console.log('Button clicked');
     }
+
+    repeatQuestionThisChapter(): void {
+        if (this.learningService() == null) {
+            console.error('Learning service was not injected properly');
+        }
+        console.log('Button clicked');
+    }
+
+    repeatQuestionRandomChapter(): void {
+        if (this.learningService() == null) {
+            console.error('Learning service was not injected properly');
+        }
+        console.log('Button clicked');
+    }
+
+
 }

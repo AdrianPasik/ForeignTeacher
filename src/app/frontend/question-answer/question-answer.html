@@ -2,19 +2,37 @@
     <p>question-answer works!</p>
     <h2>Selected key {{ selectedLanguage() }}</h2>
     <div>
-        <label>{{ learningMessage() }} </label>
-        <label>{{ knownLanguageText() }}</label>
-        <input
-            [value]="userTranslation()"
-            (input)="userTranslation.set($event.target.value)"
-            type="text"
-        />
-        <button matButton="outlined" (click)="checkAnswerClick()">
-            {{ checkAnswerCaption() }}
-        </button>
-        <button matButton="outlined" (click)="nextQuestionClick()">
-            {{ nextQuestionCaption() }}
-        </button>
+        <form>
+            <div class="centered">
+                <mat-label> {{ knownLanguageCaption() }} </mat-label>
+                <mat-label class="nextToken"> {{ knownLanguageText() }}</mat-label>
+            </div>
+            <div class="centered">
+            <mat-form-field>
+                <mat-label>{{ learningMessage() }} </mat-label>
+                <input matInput [value]="userTranslation()" (input)="userTranslation.set($event.target.value)"
+                    type="text" />
+            </mat-form-field>
+            </div>
+            <div class="centered">
+                <button matButton="outlined" (click)="checkAnswerClick()">
+                    {{ checkAnswerButtonCaption() }}
+                </button>
+            </div>
+            <div class="centered">
+                <button matButton="outlined" (click)="nextQuestionClick()">
+                    {{ nextQuestionButtonCaption() }}
+                </button>
+
+                <button matButton="outlined" (click)="nextQuestionClick()">
+                    {{ repeatQuestionThisChapterButtonCaption() }}
+                </button>
+
+                <button matButton="outlined" (click)="nextQuestionClick()">
+                    {{ repeatQuestionThisChapterButtonCaption() }}
+                </button>
+            </div>
+        </form>
     </div>
-    <app-display-result [progressService]="this.progressService" />
+    <app-question-answer-result [success]="this.nextQuestionSuccess()" [translatedWord]="this.userTranslation()" />
 </div>

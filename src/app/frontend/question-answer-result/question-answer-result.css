@@ -1,0 +1,16 @@
+.question-answer-result-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.icon-position {
+    padding-top: 0.1rem;
+}
+
+.icon-color-success {
+    color: green;
+}
+
+.icon-color-failure {
+    color: red;
+}

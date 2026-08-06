@@ -24,6 +24,7 @@ export class Learning {
                     return {
                         text: item.text,
                         foreignPhrase: item.foreignText,
+                        chapter: vocabularyChapter.name
                     };
                 }
             }
@@ -34,6 +35,7 @@ export class Learning {
                 return {
                     text: item.text,
                     foreignPhrase: item.foreignText,
+                    chapter: vocabularyChapter.name
                 };
             }
         }
@@ -90,4 +92,5 @@ export interface Answer {
 export interface NextPhrase {
     text: string;
     foreignPhrase: string;
+    chapter: string;
 }

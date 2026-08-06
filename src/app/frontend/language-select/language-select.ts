@@ -4,15 +4,17 @@ import { HttpClient } from '@angular/common/http';
 import { Vocabulary, VocabularyParser } from '../../services/persistence/vocabulary';
 import { QuestionAnswer } from '../question-answer/question-answer';
 import { Learning } from '../../services/learning';
-import { ProgressLoader } from '../../services/persistence/progress';
+import { Progress, ProgressLoader } from '../../services/persistence/progress';
 import { firstValueFrom } from 'rxjs';
 import { ViewVocabulary } from '../view-vocabulary/view-vocabulary';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { DisplayResult } from "../display-result/display-result";
 
 @Component({
     selector: 'app-language-select',
     templateUrl: './language-select.html',
     styleUrl: './language-select.css',
-    imports: [CommonModule, QuestionAnswer, ViewVocabulary],
+    imports: [CommonModule, QuestionAnswer, ViewVocabulary, MatSlideToggleModule, DisplayResult],
 })
 export class LanguageSelect {
     private http = inject(HttpClient);
@@ -23,6 +25,8 @@ export class LanguageSelect {
     ];
 
     selectedLanguageKey = signal(this.options[0].value);
+    vocabularyVisible = signal(false);
+    progressVisible = signal(false);
     learning = signal<Learning | null>(null);
     isLoading = signal(false);
 
@@ -34,10 +38,22 @@ export class LanguageSelect {
         return this.learning()?.vocabulary ?? null;
     }
 
+    get progress(): Progress | null {
+        return this.learning()?.progress ?? null;
+    }
+
     async onSelectionChange(event: Event): Promise<void> {
         const value = (event.target as HTMLSelectElement).value;
         this.selectedLanguageKey.set(value);
         await this.reloadLearning();
+    }
+
+    onVocabularyVisibleChange(event: any): void {
+        this.vocabularyVisible.set(event.checked);
+    }
+
+    onProgressVisibleChange(event: any): void {
+        this.progressVisible.set(event.checked);
     }
 
     private async reloadLearning(): Promise<void> {
