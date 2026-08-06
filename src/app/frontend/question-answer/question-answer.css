@@ -9,3 +9,7 @@
 .nextToken {
     font-weight: bold;
 }
+.action-button {
+    margin-top: 1rem;
+    margin-left: 1rem;
+}

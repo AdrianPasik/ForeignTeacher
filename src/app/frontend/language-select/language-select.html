@@ -1,29 +1,32 @@
 <div class="lang-select-container">
-    <label for="lang-scenario">Pick learning scenario</label>
-    <select id="lang-scenario" [value]="selectedLanguageKey()" (change)="onSelectionChange($event)">
-        >
-        <option *ngFor="let option of options" [value]="option.value">
-            {{ option.label }}
-        </option>
-    </select>
-    <div>
-        Selected option
-        {{ selectedLanguageKey() }}
+    <div class="centered">
+        <div>
+            <label>This is tool for learning foreign languages</label>
+        </div>
+        <div>
+        <label for="lang-scenario">Pick learning scenario</label>
+        <select id="lang-scenario" [value]="selectedLanguageKey()" (change)="onSelectionChange($event)">
+            >
+            <option *ngFor="let option of options" [value]="option.value">
+                {{ option.label }}
+            </option>
+        </select>
+        </div>
+    </div>
+    <div class="centered">
+        <mat-slide-toggle class="switch" [checked]="this.vocabularyVisible()"
+            (change)="onVocabularyVisibleChange($event)">Show vocabulary</mat-slide-toggle>
+        <mat-slide-toggle class="switch" [checked]="this.progressVisible()"
+            (change)="onProgressVisibleChange($event)">Show progress</mat-slide-toggle>
     </div>
     <div>
-        <mat-slide-toggle [checked]="this.vocabularyVisible()" (change)="onVocabularyVisibleChange($event)">Show vocabulary</mat-slide-toggle>
-    </div>
-    <div>
-        <mat-slide-toggle [checked]="this.progressVisible()" (change)="onProgressVisibleChange($event)">Show progress</mat-slide-toggle>
+
     </div>
     @if(this.vocabularyVisible()) {
-        <app-view-vocabulary [vocabularyService]="this.vocabulary" />
+    <app-view-vocabulary [vocabularyService]="this.vocabulary" />
     }
-    <app-question-answer
-        [selectedLanguage]="this.selectedLanguageKey()"
-        [learningService]="this.learning()"
-    />
+    <app-question-answer [selectedLanguage]="this.selectedLanguageKey()" [learningService]="this.learning()" />
     @if(this.progressVisible()) {
-        <app-display-result [progressService]="this.progress" />
+    <app-display-result [progressService]="this.progress" />
     }
 </div>

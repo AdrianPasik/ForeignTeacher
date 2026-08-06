@@ -1,10 +1,8 @@
 .question-answer-result-container {
     display: flex;
-    flex-direction: column;
-}
-
-.icon-position {
-    padding-top: 0.1rem;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
 }
 
 .icon-color-success {
@@ -13,4 +11,7 @@
 
 .icon-color-failure {
     color: red;
+}
+.text {
+    margin-left: 0.5rem;
 }

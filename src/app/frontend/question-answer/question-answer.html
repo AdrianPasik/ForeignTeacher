@@ -1,6 +1,4 @@
 <div>
-    <p>question-answer works!</p>
-    <h2>Selected key {{ selectedLanguage() }}</h2>
     <div>
         <form>
             <div class="centered">
@@ -14,25 +12,26 @@
                     type="text" />
             </mat-form-field>
             </div>
+            <app-question-answer-result [success]="this.nextQuestionSuccess()" [translatedWord]="this.userTranslation()" />
             <div class="centered">
                 <button matButton="outlined" (click)="checkAnswerClick()">
                     {{ checkAnswerButtonCaption() }}
                 </button>
             </div>
             <div class="centered">
-                <button matButton="outlined" (click)="nextQuestionClick()">
+                <button class="action-button" matButton="outlined" (click)="nextQuestionClick()">
                     {{ nextQuestionButtonCaption() }}
                 </button>
 
-                <button matButton="outlined" (click)="nextQuestionClick()">
+                <button class="action-button" matButton="outlined" (click)="nextQuestionClick()">
                     {{ repeatQuestionThisChapterButtonCaption() }}
                 </button>
 
-                <button matButton="outlined" (click)="nextQuestionClick()">
+                <button class="action-button" matButton="outlined" (click)="nextQuestionClick()">
                     {{ repeatQuestionThisChapterButtonCaption() }}
                 </button>
             </div>
         </form>
     </div>
-    <app-question-answer-result [success]="this.nextQuestionSuccess()" [translatedWord]="this.userTranslation()" />
+
 </div>

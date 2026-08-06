@@ -1,17 +1,15 @@
-import { Component, Input, input, Signal, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { Progress } from '../../services/persistence/progress';
 import { Learning } from '../../services/learning';
-import { DisplayResult } from '../display-result/display-result';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { QuestionAnswerResult } from "../question-answer-result/question-answer-result";
-import { single } from 'rxjs';
 
 @Component({
     selector: 'app-question-answer',
-    imports: [QuestionAnswerResult, DisplayResult, MatButtonModule, FormsModule, MatFormFieldModule, MatInputModule],
+    imports: [QuestionAnswerResult, MatButtonModule, FormsModule, MatFormFieldModule, MatInputModule],
     templateUrl: './question-answer.html',
     styleUrl: './question-answer.css',
 })
