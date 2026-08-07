@@ -1,0 +1,14 @@
+.separator {
+  display: flex;
+  align-items: center;
+  width: 33.33vw;
+}
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  border-bottom: 2px solid #333;
+}
+
+.separator::before { margin-right: 15px; }
+.separator::after { margin-left: 15px; }

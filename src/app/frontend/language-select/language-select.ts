@@ -9,12 +9,13 @@ import { firstValueFrom } from 'rxjs';
 import { ViewVocabulary } from '../view-vocabulary/view-vocabulary';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DisplayResult } from '../display-result/display-result';
+import { Section } from "../components/section/section";
 
 @Component({
     selector: 'app-language-select',
     templateUrl: './language-select.html',
     styleUrl: './language-select.css',
-    imports: [CommonModule, QuestionAnswer, ViewVocabulary, MatSlideToggleModule, DisplayResult],
+    imports: [CommonModule, QuestionAnswer, ViewVocabulary, MatSlideToggleModule, DisplayResult, Section],
 })
 export class LanguageSelect {
     private http = inject(HttpClient);

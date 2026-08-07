@@ -9,6 +9,9 @@
 .centered {
     text-align: center;
 }
+.top-gap {
+    margin-top: 1rem;
+}
 
 .switch {
     padding-left: 1rem;

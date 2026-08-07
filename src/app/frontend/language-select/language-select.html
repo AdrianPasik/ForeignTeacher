@@ -6,7 +6,7 @@
                 translations from your mother language to foreign language (harder path)</label
             >
         </div>
-        <div>
+        <div class="centered top-gap" >
             <label for="lang-scenario">Pick learning scenario</label>
             <select
                 id="lang-scenario"
@@ -20,7 +20,8 @@
             </select>
         </div>
     </div>
-    <div class="centered">
+    <app-section></app-section>
+    <div class="centered top-gap">
         <mat-slide-toggle
             class="switch"
             [checked]="this.vocabularyVisible()"
@@ -34,14 +35,15 @@
             >Show progress</mat-slide-toggle
         >
     </div>
-    <div></div>
     @if (this.vocabularyVisible()) {
         <app-view-vocabulary [vocabularyService]="this.vocabulary" />
     }
+    <div class="top-gap">
     <app-question-answer
         [selectedLanguage]="this.selectedLanguageKey()"
         [learningService]="this.learning()"
     />
+    </div>
     @if (this.progressVisible()) {
         <app-display-result [progressService]="this.progress" />
     }
