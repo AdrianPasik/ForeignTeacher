@@ -1,12 +1,21 @@
 <div class="question-answer-result-container">
-        @if(success()) {
-            <mat-icon class="icon-color-success" aria-hidden="false" aria-label="Example home icon"
-                fontIcon="check">
-            </mat-icon>
-            <span>Correct answer</span>
-        } @else {
-                <mat-icon class="icon-color-failure" aria-hidden="false" aria-label="Example home icon" fontIcon="cancel">
-                </mat-icon>
-                <span class="text">Wrong answer</span>
-        }
+    @if (success()) {
+        <mat-icon
+            class="icon-color-success"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="check"
+        >
+        </mat-icon>
+        <span>Correct answer</span>
+    } @else {
+        <mat-icon
+            class="icon-color-failure"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="cancel"
+        >
+        </mat-icon>
+        <span class="text">Wrong answer</span>
+    }
 </div>

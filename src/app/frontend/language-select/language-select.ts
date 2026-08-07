@@ -7,8 +7,8 @@ import { Learning } from '../../services/learning';
 import { Progress, ProgressLoader } from '../../services/persistence/progress';
 import { firstValueFrom } from 'rxjs';
 import { ViewVocabulary } from '../view-vocabulary/view-vocabulary';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { DisplayResult } from "../display-result/display-result";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DisplayResult } from '../display-result/display-result';
 
 @Component({
     selector: 'app-language-select',

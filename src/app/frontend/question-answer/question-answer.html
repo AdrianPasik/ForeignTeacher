@@ -6,13 +6,20 @@
                 <mat-label class="nextToken"> {{ knownLanguageText() }}</mat-label>
             </div>
             <div class="centered">
-            <mat-form-field>
-                <mat-label>{{ learningMessage() }} </mat-label>
-                <input matInput [value]="userTranslation()" (input)="userTranslation.set($event.target.value)"
-                    type="text" />
-            </mat-form-field>
+                <mat-form-field>
+                    <mat-label>{{ learningMessage() }} </mat-label>
+                    <input
+                        matInput
+                        [value]="userTranslation()"
+                        (input)="userTranslation.set($event.target.value)"
+                        type="text"
+                    />
+                </mat-form-field>
             </div>
-            <app-question-answer-result [success]="this.nextQuestionSuccess()" [translatedWord]="this.userTranslation()" />
+            <app-question-answer-result
+                [success]="this.nextQuestionSuccess()"
+                [translatedWord]="this.userTranslation()"
+            />
             <div class="centered">
                 <button matButton="outlined" (click)="checkAnswerClick()">
                     {{ checkAnswerButtonCaption() }}
@@ -33,5 +40,4 @@
             </div>
         </form>
     </div>
-
 </div>

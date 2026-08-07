@@ -5,11 +5,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { QuestionAnswerResult } from "../question-answer-result/question-answer-result";
+import { QuestionAnswerResult } from '../question-answer-result/question-answer-result';
 
 @Component({
     selector: 'app-question-answer',
-    imports: [QuestionAnswerResult, MatButtonModule, FormsModule, MatFormFieldModule, MatInputModule],
+    imports: [
+        QuestionAnswerResult,
+        MatButtonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+    ],
     templateUrl: './question-answer.html',
     styleUrl: './question-answer.css',
 })
@@ -17,7 +23,7 @@ export class QuestionAnswer {
     selectedLanguage = input.required<string>();
     learningService = input.required<Learning | null>();
     answerResultVisible = signal(false);
-    knownLanguageCaption = signal("Translate: ");
+    knownLanguageCaption = signal('Translate: ');
     knownLanguageText = signal('TestPLToken');
     userTranslation = signal('');
     checkAnswerButtonCaption = signal('Check');
@@ -27,7 +33,6 @@ export class QuestionAnswer {
     nextQuestionSuccess = signal(false);
     nextQuestionMessage = signal('TestMessage2');
     learningMessage = signal('Translate this word');
-
 
     get progressService(): Progress | null {
         return this.learningService()?.progress ?? null;
@@ -66,6 +71,4 @@ export class QuestionAnswer {
         }
         console.log('Button clicked');
     }
-
-
 }

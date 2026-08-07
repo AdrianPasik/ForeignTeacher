@@ -1,32 +1,48 @@
 <div class="lang-select-container">
     <div class="centered">
         <div>
-            <label>This is tool for learning foreign languages</label>
+            <label
+                >This is tool for learning words of foreign languages. It will help you memorize
+                translations from your mother language to foreign language (harder path)</label
+            >
         </div>
         <div>
-        <label for="lang-scenario">Pick learning scenario</label>
-        <select id="lang-scenario" [value]="selectedLanguageKey()" (change)="onSelectionChange($event)">
+            <label for="lang-scenario">Pick learning scenario</label>
+            <select
+                id="lang-scenario"
+                [value]="selectedLanguageKey()"
+                (change)="onSelectionChange($event)"
             >
-            <option *ngFor="let option of options" [value]="option.value">
-                {{ option.label }}
-            </option>
-        </select>
+                >
+                <option *ngFor="let option of options" [value]="option.value">
+                    {{ option.label }}
+                </option>
+            </select>
         </div>
     </div>
     <div class="centered">
-        <mat-slide-toggle class="switch" [checked]="this.vocabularyVisible()"
-            (change)="onVocabularyVisibleChange($event)">Show vocabulary</mat-slide-toggle>
-        <mat-slide-toggle class="switch" [checked]="this.progressVisible()"
-            (change)="onProgressVisibleChange($event)">Show progress</mat-slide-toggle>
+        <mat-slide-toggle
+            class="switch"
+            [checked]="this.vocabularyVisible()"
+            (change)="onVocabularyVisibleChange($event)"
+            >Show vocabulary</mat-slide-toggle
+        >
+        <mat-slide-toggle
+            class="switch"
+            [checked]="this.progressVisible()"
+            (change)="onProgressVisibleChange($event)"
+            >Show progress</mat-slide-toggle
+        >
     </div>
-    <div>
-
-    </div>
-    @if(this.vocabularyVisible()) {
-    <app-view-vocabulary [vocabularyService]="this.vocabulary" />
+    <div></div>
+    @if (this.vocabularyVisible()) {
+        <app-view-vocabulary [vocabularyService]="this.vocabulary" />
     }
-    <app-question-answer [selectedLanguage]="this.selectedLanguageKey()" [learningService]="this.learning()" />
-    @if(this.progressVisible()) {
-    <app-display-result [progressService]="this.progress" />
+    <app-question-answer
+        [selectedLanguage]="this.selectedLanguageKey()"
+        [learningService]="this.learning()"
+    />
+    @if (this.progressVisible()) {
+        <app-display-result [progressService]="this.progress" />
     }
 </div>

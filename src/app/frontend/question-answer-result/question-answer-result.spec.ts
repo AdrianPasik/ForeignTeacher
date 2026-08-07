@@ -8,13 +8,12 @@ describe('QuestionAnswerResult', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [QuestionAnswerResult]
-        })
-            .compileComponents();
+            imports: [QuestionAnswerResult],
+        }).compileComponents();
 
         fixture = TestBed.createComponent(QuestionAnswerResult);
-        fixture.componentRef.setInput("success", "testSuccess");
-        fixture.componentRef.setInput("translatedWord", "testMessage");
+        fixture.componentRef.setInput('success', 'testSuccess');
+        fixture.componentRef.setInput('translatedWord', 'testMessage');
         component = fixture.componentInstance;
 
         await fixture.whenStable();

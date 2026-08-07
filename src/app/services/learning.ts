@@ -24,7 +24,7 @@ export class Learning {
                     return {
                         text: item.text,
                         foreignPhrase: item.foreignText,
-                        chapter: vocabularyChapter.name
+                        chapter: vocabularyChapter.name,
                     };
                 }
             }
@@ -35,7 +35,7 @@ export class Learning {
                 return {
                     text: item.text,
                     foreignPhrase: item.foreignText,
-                    chapter: vocabularyChapter.name
+                    chapter: vocabularyChapter.name,
                 };
             }
         }
