@@ -10,12 +10,13 @@ import { ViewVocabulary } from '../view-vocabulary/view-vocabulary';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DisplayResult } from '../display-result/display-result';
 import { Section } from "../components/section/section";
+import { StdGap } from "../components/std-gap/std-gap";
 
 @Component({
     selector: 'app-language-select',
     templateUrl: './language-select.html',
     styleUrl: './language-select.css',
-    imports: [CommonModule, QuestionAnswer, ViewVocabulary, MatSlideToggleModule, DisplayResult, Section],
+    imports: [CommonModule, QuestionAnswer, ViewVocabulary, MatSlideToggleModule, DisplayResult, Section, StdGap],
 })
 export class LanguageSelect {
     private http = inject(HttpClient);

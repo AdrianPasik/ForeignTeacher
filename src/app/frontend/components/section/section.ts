@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-section',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './section.css',
 })
 export class Section {
-
+    caption = input.required<string>();
 }

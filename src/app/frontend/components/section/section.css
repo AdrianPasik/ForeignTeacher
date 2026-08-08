@@ -10,5 +10,5 @@
   border-bottom: 2px solid #333;
 }
 
-.separator::before { margin-right: 15px; }
-.separator::after { margin-left: 15px; }
+.separator::before { margin-right: 1rem; }
+.separator::after { margin-left: 1rem; }

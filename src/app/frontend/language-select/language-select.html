@@ -1,4 +1,7 @@
 <div class="lang-select-container">
+    <app-std-gap />
+    <app-section caption='General info'></app-section>
+    <app-std-gap />
     <div class="centered">
         <div>
             <label
@@ -20,7 +23,7 @@
             </select>
         </div>
     </div>
-    <app-section></app-section>
+
     <div class="centered top-gap">
         <mat-slide-toggle
             class="switch"
@@ -38,12 +41,17 @@
     @if (this.vocabularyVisible()) {
         <app-view-vocabulary [vocabularyService]="this.vocabulary" />
     }
+    <app-std-gap />
+    <app-section caption='Practise section'></app-section>
     <div class="top-gap">
     <app-question-answer
         [selectedLanguage]="this.selectedLanguageKey()"
         [learningService]="this.learning()"
     />
     </div>
+    <app-std-gap />
+    <app-section caption='Progress'></app-section>
+    <app-std-gap />
     @if (this.progressVisible()) {
         <app-display-result [progressService]="this.progress" />
     }

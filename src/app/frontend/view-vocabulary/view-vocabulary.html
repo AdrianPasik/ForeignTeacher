@@ -1,7 +1,7 @@
 <div class="vocabulary-container">
     @for (chapter of this.chapters; track chapter) {
         @for (item of chapter.items; track item) {
-            <div>{{ item.text }} - {{ item.foreignText }}</div>
+            <div>&nbsp;{{ item.text }} - {{ item.foreignText }}&nbsp;</div>
         }
     }
 </div>

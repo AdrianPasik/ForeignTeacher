@@ -1,19 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Section } from './section';
+import { StdGap } from './std-gap';
 
-describe('Section', () => {
-  let component: Section;
-  let fixture: ComponentFixture<Section>;
+describe('StdGap', () => {
+  let component: StdGap;
+  let fixture: ComponentFixture<StdGap>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Section]
+      imports: [StdGap]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Section);
-    fixture.componentRef.setInput("caption", "test");
+    fixture = TestBed.createComponent(StdGap);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
