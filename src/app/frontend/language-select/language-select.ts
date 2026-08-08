@@ -11,12 +11,15 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DisplayResult } from '../display-result/display-result';
 import { Section } from "../components/section/section";
 import { StdGap } from "../components/std-gap/std-gap";
+import { MatFormField, MatLabel } from "@angular/material/input";
+import { MatOption } from '@angular/material/autocomplete';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 
 @Component({
     selector: 'app-language-select',
     templateUrl: './language-select.html',
     styleUrl: './language-select.css',
-    imports: [CommonModule, QuestionAnswer, ViewVocabulary, MatSlideToggleModule, DisplayResult, Section, StdGap],
+    imports: [CommonModule, QuestionAnswer, ViewVocabulary, MatSlideToggleModule, DisplayResult, Section, StdGap, MatFormField, MatLabel, MatOption, MatSelect],
 })
 export class LanguageSelect {
     private http = inject(HttpClient);
@@ -44,9 +47,7 @@ export class LanguageSelect {
         return this.learning()?.progress ?? null;
     }
 
-    async onSelectionChange(event: Event): Promise<void> {
-        const value = (event.target as HTMLSelectElement).value;
-        this.selectedLanguageKey.set(value);
+    async onSelectionChange(event: MatSelectChange): Promise<void> {
         await this.reloadLearning();
     }
 

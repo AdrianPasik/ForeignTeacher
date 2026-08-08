@@ -10,17 +10,20 @@
             >
         </div>
         <div class="centered top-gap" >
-            <label for="lang-scenario">Pick learning scenario</label>
-            <select
-                id="lang-scenario"
-                [value]="selectedLanguageKey()"
-                (change)="onSelectionChange($event)"
-            >
-                >
-                <option *ngFor="let option of options" [value]="option.value">
-                    {{ option.label }}
-                </option>
-            </select>
+            <mat-form-field>
+                <mat-label>Pick learning scenario</mat-label>
+                <mat-select
+                    [(value)]="selectedLanguageKey"
+                    (selectionChange)="onSelectionChange($event)">
+                    @for(option of options; track option) {
+                        <mat-option [value]="option.value">
+                            {{ option.label }}
+                        </mat-option>
+                    }
+
+                </mat-select>
+            </mat-form-field>
+
         </div>
     </div>
 
