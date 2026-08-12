@@ -70,14 +70,14 @@ export class Learning {
                 return {
                     notFound: false,
                     correct: isCorrect,
-                    ...userData
+                    ...userData,
                 };
             }
         }
         return {
             notFound: true,
             correct: false,
-            ...userData
+            ...userData,
         };
     }
 

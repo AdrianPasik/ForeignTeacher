@@ -50,9 +50,9 @@ export class QuestionAnswer {
     }
 
     nextQuizProcess(nextQuiz: NextQuiz) {
-        if(nextQuiz) {
+        if (nextQuiz) {
             this.knownLanguageText.set(nextQuiz.text);
-            this.userTranslation.set("");
+            this.userTranslation.set('');
         }
     }
 
@@ -74,11 +74,11 @@ export class QuestionAnswer {
         }
         const nextQuiz = this.learningService()?.getNextQuiz();
         if (nextQuiz) {
-            this.knownLanguageCaption.set("Translate: ");
+            this.knownLanguageCaption.set('Translate: ');
             this.nextQuizProcess(nextQuiz);
         } else {
             this.knownLanguageCaption.set("You've reached end of vocabulary. Nothing to translate");
-            this.knownLanguageText.set("");
+            this.knownLanguageText.set('');
         }
     }
 
