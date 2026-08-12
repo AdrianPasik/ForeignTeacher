@@ -11,15 +11,18 @@
                     <input
                         matInput
                         [value]="userTranslation()"
-                        (input)="userTranslation.set($event.target.value)"
+                        (input)="userTranslationChange($event)"
                         type="text"
                     />
                 </mat-form-field>
             </div>
-            <app-question-answer-result
-                [success]="this.nextQuestionSuccess()"
-                [translatedWord]="this.userTranslation()"
-            />
+            @if (this.answerResultVisible()) {
+                <app-question-answer-result
+                    [success]="this.nextQuestionSuccess()"
+                    [translatedWord]="this.userTranslation()"
+                />
+            }
+
             <div class="centered">
                 <button matButton="outlined" (click)="checkAnswerClick()">
                     {{ checkAnswerButtonCaption() }}

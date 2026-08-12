@@ -3,22 +3,21 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Section } from './section';
 
 describe('Section', () => {
-  let component: Section;
-  let fixture: ComponentFixture<Section>;
+    let component: Section;
+    let fixture: ComponentFixture<Section>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Section]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [Section],
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(Section);
-    fixture.componentRef.setInput("caption", "test");
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+        fixture = TestBed.createComponent(Section);
+        fixture.componentRef.setInput('caption', 'test');
+        component = fixture.componentInstance;
+        await fixture.whenStable();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

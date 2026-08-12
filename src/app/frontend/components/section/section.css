@@ -1,14 +1,18 @@
 .separator {
-  display: flex;
-  align-items: center;
-  width: 33.33vw;
+    display: flex;
+    align-items: center;
+    width: 33.33vw;
 }
 .separator::before,
 .separator::after {
-  content: "";
-  flex: 1;
-  border-bottom: 2px solid #333;
+    content: '';
+    flex: 1;
+    border-bottom: 2px solid #333;
 }
 
-.separator::before { margin-right: 1rem; }
-.separator::after { margin-left: 1rem; }
+.separator::before {
+    margin-right: 1rem;
+}
+.separator::after {
+    margin-left: 1rem;
+}

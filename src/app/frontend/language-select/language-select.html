@@ -1,6 +1,6 @@
 <div class="lang-select-container">
     <app-std-gap />
-    <app-section caption='General info'></app-section>
+    <app-section caption="General info"></app-section>
     <app-std-gap />
     <div class="centered">
         <div>
@@ -9,21 +9,20 @@
                 translations from your mother language to foreign language (harder path)</label
             >
         </div>
-        <div class="centered top-gap" >
+        <div class="centered top-gap">
             <mat-form-field>
                 <mat-label>Pick learning scenario</mat-label>
                 <mat-select
                     [(value)]="selectedLanguageKey"
-                    (selectionChange)="onSelectionChange($event)">
-                    @for(option of options; track option) {
+                    (selectionChange)="onSelectionChange($event)"
+                >
+                    @for (option of options; track option) {
                         <mat-option [value]="option.value">
                             {{ option.label }}
                         </mat-option>
                     }
-
                 </mat-select>
             </mat-form-field>
-
         </div>
     </div>
 
@@ -45,15 +44,15 @@
         <app-view-vocabulary [vocabularyService]="this.vocabulary" />
     }
     <app-std-gap />
-    <app-section caption='Practise section'></app-section>
+    <app-section caption="Practise section"></app-section>
     <div class="top-gap">
-    <app-question-answer
-        [selectedLanguage]="this.selectedLanguageKey()"
-        [learningService]="this.learning()"
-    />
+        <app-question-answer
+            [selectedLanguage]="this.selectedLanguageKey()"
+            [learningService]="this.learning()"
+        />
     </div>
     <app-std-gap />
-    <app-section caption='Progress'></app-section>
+    <app-section caption="Progress"></app-section>
     <app-std-gap />
     @if (this.progressVisible()) {
         <app-display-result [progressService]="this.progress" />

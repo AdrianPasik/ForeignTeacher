@@ -9,9 +9,9 @@ import { firstValueFrom } from 'rxjs';
 import { ViewVocabulary } from '../view-vocabulary/view-vocabulary';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DisplayResult } from '../display-result/display-result';
-import { Section } from "../components/section/section";
-import { StdGap } from "../components/std-gap/std-gap";
-import { MatFormField, MatLabel } from "@angular/material/input";
+import { Section } from '../components/section/section';
+import { StdGap } from '../components/std-gap/std-gap';
+import { MatFormField, MatLabel } from '@angular/material/input';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
 
@@ -19,7 +19,19 @@ import { MatSelect, MatSelectChange } from '@angular/material/select';
     selector: 'app-language-select',
     templateUrl: './language-select.html',
     styleUrl: './language-select.css',
-    imports: [CommonModule, QuestionAnswer, ViewVocabulary, MatSlideToggleModule, DisplayResult, Section, StdGap, MatFormField, MatLabel, MatOption, MatSelect],
+    imports: [
+        CommonModule,
+        QuestionAnswer,
+        ViewVocabulary,
+        MatSlideToggleModule,
+        DisplayResult,
+        Section,
+        StdGap,
+        MatFormField,
+        MatLabel,
+        MatOption,
+        MatSelect,
+    ],
 })
 export class LanguageSelect {
     private http = inject(HttpClient);

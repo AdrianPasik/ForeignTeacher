@@ -22,7 +22,7 @@ import { QuestionAnswerResult } from '../question-answer-result/question-answer-
 export class QuestionAnswer {
     selectedLanguage = input.required<string>();
     learningService = input.required<Learning | null>();
-    answerResultVisible = signal(false);
+    answerResultVisible = signal(true); // todo - change to false after testing
     knownLanguageCaption = signal('Translate: ');
     knownLanguageText = signal('TestPLToken');
     userTranslation = signal('');
@@ -37,8 +37,10 @@ export class QuestionAnswer {
     get progressService(): Progress | null {
         return this.learningService()?.progress ?? null;
     }
-    onInputChange(event: any): void {
-        this.userTranslation.set(event.target.value);
+
+    userTranslationChange(event: any): void {
+        this.userTranslation.set(event.target.value)
+        this.answerResultVisible.set(false);
     }
 
     checkAnswerClick(): void {
@@ -71,4 +73,6 @@ export class QuestionAnswer {
         }
         console.log('Button clicked');
     }
+
+
 }
