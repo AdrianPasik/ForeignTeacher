@@ -74,7 +74,11 @@ export class QuestionAnswer {
         }
         const nextQuiz = this.learningService()?.getNextQuiz();
         if (nextQuiz) {
+            this.knownLanguageCaption.set("Translate: ");
             this.nextQuizProcess(nextQuiz);
+        } else {
+            this.knownLanguageCaption.set("You've reached end of vocabulary. Nothing to translate");
+            this.knownLanguageText.set("");
         }
     }
 

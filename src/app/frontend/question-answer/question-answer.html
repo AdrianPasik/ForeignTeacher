@@ -6,6 +6,7 @@
                 <mat-label class="nextToken"> {{ knownLanguageText() }}</mat-label>
             </div>
             <div class="centered">
+
                 <mat-form-field>
                     <mat-label>{{ learningMessage() }} </mat-label>
                     <input
@@ -14,7 +15,12 @@
                         (input)="userTranslationChange($event)"
                         type="text"
                     />
+
                 </mat-form-field>
+                <button class="checkButton" matButton="outlined" (click)="checkAnswerClick()">
+                    {{ checkAnswerButtonCaption() }}
+                </button>
+
             </div>
             @if (this.answerResultVisible()) {
                 <app-question-answer-result
@@ -24,11 +30,7 @@
                 />
             }
 
-            <div class="centered">
-                <button matButton="outlined" (click)="checkAnswerClick()">
-                    {{ checkAnswerButtonCaption() }}
-                </button>
-            </div>
+
             <div class="centered">
                 <button class="action-button" matButton="outlined" (click)="nextClick()">
                     {{ nextQuestionButtonCaption() }}
