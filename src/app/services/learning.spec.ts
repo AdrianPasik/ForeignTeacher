@@ -10,8 +10,8 @@ describe('Learning', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({});
         let vocabulary = new Vocabulary();
-        vocabulary.chapters.push(new VocabularyChapter("1"));
-        vocabulary.chapters[0].items.push(new VocabularyItem(1, "test", "testForeign"));
+        vocabulary.chapters.push(new VocabularyChapter('1'));
+        vocabulary.chapters[0].items.push(new VocabularyItem(1, 'test', 'testForeign'));
         let progress = new Progress('test', []);
         service = new Learning(progress, vocabulary);
     });
@@ -21,12 +21,12 @@ describe('Learning', () => {
     });
 
     it('should return undefined on wrong translation', () => {
-        const answer = service.checkAnswer("wrongKey", "wrongValue");
+        const answer = service.checkAnswer('wrongKey', 'wrongValue');
         expect(answer.notFound).toBeTruthy();
     });
 
     it('should return found on right translation', () => {
-        const answer = service.checkAnswer("test", "testForeign");
+        const answer = service.checkAnswer('test', 'testForeign');
         expect(answer.correct).toBeTruthy();
         expect(answer.notFound).toBeFalsy();
     });
@@ -34,8 +34,8 @@ describe('Learning', () => {
     it('should give next quiz when progress is empty', () => {
         const nextQuiz = service.getNextQuiz();
         expect(nextQuiz).toBeTruthy();
-        expect(nextQuiz?.chapter).toBe("1");
-        expect(nextQuiz?.text).toBe("test");
-        expect(nextQuiz?.foreignPhrase).toBe("testForeign");
+        expect(nextQuiz?.chapter).toBe('1');
+        expect(nextQuiz?.text).toBe('test');
+        expect(nextQuiz?.foreignPhrase).toBe('testForeign');
     });
 });

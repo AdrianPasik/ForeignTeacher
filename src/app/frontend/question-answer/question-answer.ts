@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, signal, afterNextRender, effect } from '@angular/core';
 import { Progress } from '../../services/persistence/progress';
 import { Learning, NextQuiz } from '../../services/learning';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,9 +22,10 @@ import { QuestionAnswerResult } from '../question-answer-result/question-answer-
 export class QuestionAnswer {
     selectedLanguage = input.required<string>();
     learningService = input.required<Learning | null>();
+    hasInitialized = false;
     answerResultVisible = signal(false);
     knownLanguageCaption = signal('Translate: ');
-    knownLanguageText = signal('TestPLToken');
+    knownLanguageText = signal('');
     userTranslation = signal('');
     checkAnswerButtonCaption = signal('Check');
     nextQuestionButtonCaption = signal('Next');
@@ -36,8 +37,14 @@ export class QuestionAnswer {
     nextQuestionMessage = signal('TestMessage2');
     learningMessage = signal('Translate this word');
 
-    ngOnInit() {
-        this.nextClick();
+    constructor() {
+        effect((onCleanup) => {
+            const service = this.learningService();
+            if (service && !this.hasInitialized) {
+                this.hasInitialized = true;
+                this.nextClick();
+            }
+        });
     }
 
     get progressService(): Progress | null {
