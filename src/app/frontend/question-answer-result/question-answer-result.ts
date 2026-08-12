@@ -10,5 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class QuestionAnswerResult {
     success = input.required<boolean>();
+    found = input.required<boolean>();
     translatedWord = input.required<string>();
 }

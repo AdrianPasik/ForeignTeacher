@@ -1,6 +1,6 @@
 import { Component, input, signal } from '@angular/core';
 import { Progress } from '../../services/persistence/progress';
-import { Learning } from '../../services/learning';
+import { Learning, NextQuiz } from '../../services/learning';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,7 +22,7 @@ import { QuestionAnswerResult } from '../question-answer-result/question-answer-
 export class QuestionAnswer {
     selectedLanguage = input.required<string>();
     learningService = input.required<Learning | null>();
-    answerResultVisible = signal(true); // todo - change to false after testing
+    answerResultVisible = signal(false);
     knownLanguageCaption = signal('Translate: ');
     knownLanguageText = signal('TestPLToken');
     userTranslation = signal('');
@@ -30,17 +30,30 @@ export class QuestionAnswer {
     nextQuestionButtonCaption = signal('Next');
     repeatQuestionThisChapterButtonCaption = signal('Repeat chapter');
     repeatQuestionRandomChapterButtonCaption = signal('Repeat item across chapters');
+
     nextQuestionSuccess = signal(false);
+    nextQuestionFound = signal(false);
     nextQuestionMessage = signal('TestMessage2');
     learningMessage = signal('Translate this word');
+
+    ngOnInit() {
+        this.nextClick();
+    }
 
     get progressService(): Progress | null {
         return this.learningService()?.progress ?? null;
     }
 
     userTranslationChange(event: any): void {
-        this.userTranslation.set(event.target.value)
+        this.userTranslation.set(event.target.value);
         this.answerResultVisible.set(false);
+    }
+
+    nextQuizProcess(nextQuiz: NextQuiz) {
+        if(nextQuiz) {
+            this.knownLanguageText.set(nextQuiz.text);
+            this.userTranslation.set("");
+        }
     }
 
     checkAnswerClick(): void {
@@ -48,16 +61,21 @@ export class QuestionAnswer {
             console.error('Learning service was not injected properly');
         }
         const realService = <Learning>this.learningService();
-
-        // Empty logic for now
-        console.log('Button clicked');
+        const answer = realService.checkAnswer(this.knownLanguageText(), this.userTranslation());
+        this.nextQuestionSuccess.set(answer.correct);
+        this.nextQuestionFound.set(!answer.notFound);
+        this.answerResultVisible.set(true);
+        const progressUpdateReply = realService.processAnwer(answer);
     }
 
-    nextQuestionClick(): void {
+    nextClick(): void {
         if (this.learningService() == null) {
             console.error('Learning service was not injected properly');
         }
-        console.log('Button clicked');
+        const nextQuiz = this.learningService()?.getNextQuiz();
+        if (nextQuiz) {
+            this.nextQuizProcess(nextQuiz);
+        }
     }
 
     repeatQuestionThisChapter(): void {
@@ -73,6 +91,4 @@ export class QuestionAnswer {
         }
         console.log('Button clicked');
     }
-
-
 }

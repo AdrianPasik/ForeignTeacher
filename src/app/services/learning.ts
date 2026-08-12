@@ -11,7 +11,7 @@ export class Learning {
         public vocabulary: Vocabulary,
     ) {}
 
-    getNextPhrase(): NextPhrase | undefined {
+    getNextQuiz(): NextQuiz | undefined {
         /// We check Vocabulary and then join it with Progress
         /// 1. We go on first failed
         /// 2. If everything is done in chapter, we do 5% chance to repeat random word
@@ -42,15 +42,14 @@ export class Learning {
         return undefined;
     }
 
-    processAnwer(key: string, userInput: string) {
-        const answer = this.isCorrect(key, userInput);
+    processAnwer(answer: Answer) {
         if (answer.notFound) {
-            throw new Error(`Key '${key}' not found`);
+            throw new Error(`Key '${answer.key}' not found`);
         }
         if (answer.correct) {
-            const item = this.progress.items.find((element) => element.key == key);
+            const item = this.progress.items.find((element) => element.key == answer.key);
             if (!item) {
-                this.progress.items.push(new ProgressItem(key, '0', new Date()));
+                this.progress.items.push(new ProgressItem(answer.key, '0', new Date()));
                 ProgressLoader.write(this.progress);
                 return;
             }
@@ -62,20 +61,23 @@ export class Learning {
         return item ?? undefined;
     }
 
-    private isCorrect(key: string, userInput: string): Answer {
+    checkAnswer(key: string, userInput: string): Answer {
+        const userData = { key: key, userInput: userInput };
         for (const chapter of this.vocabulary.chapters) {
-            const item = chapter.items.find((item) => key === item.foreignText);
+            const item = chapter.items.find((item) => key === item.text);
             if (item) {
-                const isCorrect = userInput === item.text;
+                const isCorrect = userInput === item.foreignText;
                 return {
                     notFound: false,
                     correct: isCorrect,
+                    ...userData
                 };
             }
         }
         return {
             notFound: true,
             correct: false,
+            ...userData
         };
     }
 
@@ -87,9 +89,11 @@ export class Learning {
 export interface Answer {
     notFound: boolean;
     correct: boolean;
+    key: string;
+    userInput: string;
 }
 
-export interface NextPhrase {
+export interface NextQuiz {
     text: string;
     foreignPhrase: string;
     chapter: string;

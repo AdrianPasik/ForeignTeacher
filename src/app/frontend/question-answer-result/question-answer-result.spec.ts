@@ -13,6 +13,7 @@ describe('QuestionAnswerResult', () => {
 
         fixture = TestBed.createComponent(QuestionAnswerResult);
         fixture.componentRef.setInput('success', 'testSuccess');
+        fixture.componentRef.setInput('found', 'true');
         fixture.componentRef.setInput('translatedWord', 'testMessage');
         component = fixture.componentInstance;
 

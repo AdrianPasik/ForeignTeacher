@@ -41,6 +41,7 @@
         >
     </div>
     @if (this.vocabularyVisible()) {
+        <app-section caption="Vocabulary"></app-section>
         <app-view-vocabulary [vocabularyService]="this.vocabulary" />
     }
     <app-std-gap />
@@ -52,9 +53,9 @@
         />
     </div>
     <app-std-gap />
-    <app-section caption="Progress"></app-section>
     <app-std-gap />
     @if (this.progressVisible()) {
+        <app-section caption="Progress"></app-section>
         <app-display-result [progressService]="this.progress" />
     }
 </div>
