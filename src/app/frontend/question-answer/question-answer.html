@@ -1,7 +1,7 @@
 <div>
     <div>
         <form>
-            <div class="centered">
+            <div class="centered spaceTokenInput">
                 <mat-label> {{ knownLanguageCaption() }} </mat-label>
                 <mat-label class="nextToken"> {{ knownLanguageText() }}</mat-label>
             </div>
@@ -15,6 +15,7 @@
                         type="text"
                     />
                 </mat-form-field>
+
                 <button class="checkButton" matButton="outlined" (click)="checkAnswerClick()">
                     {{ checkAnswerButtonCaption() }}
                 </button>

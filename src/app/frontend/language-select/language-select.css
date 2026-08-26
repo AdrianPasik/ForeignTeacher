@@ -5,6 +5,10 @@
     justify-content: center;
     margin: 1rem;
     padding: 1rem;
+
+    margin-left: 25vw;
+    margin-right: 25vw;
+    margin-top: 1vh;
 }
 .centered {
     text-align: center;
