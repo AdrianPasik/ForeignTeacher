@@ -1,0 +1,19 @@
+
+.result-item {
+    height: 2rem;
+    display: flex;
+    align-items: center; /* This vertically centers items */
+    overflow: hidden;
+}
+
+.icon-color-success {
+    color: green;
+}
+
+.icon-color-failure {
+    color: red;
+}
+.text {
+    margin-right: 0.5rem;
+    margin-top: 0.3rem;
+}

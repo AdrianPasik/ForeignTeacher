@@ -4,3 +4,10 @@
     justify-content: space-between;
     max-width: 300px;
 }
+.text {
+    font-weight: bold;
+}
+
+.foreignText {
+    font-weight: normal;
+}

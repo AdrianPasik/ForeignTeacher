@@ -1,11 +1,9 @@
 .question-answer-container {
     border: 1px red solid;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .centered {
     text-align: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 .spaceTokenInput {
     margin-bottom: 1rem;
@@ -15,7 +13,6 @@
     margin-left: 0.5rem;
     font-weight: bold;
     font-size: 1.4rem;
-    font-family: 'Courier New', Courier, monospace;
 }
 .action-button {
     margin-top: 1rem;

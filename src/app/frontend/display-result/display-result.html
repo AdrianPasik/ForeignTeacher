@@ -1,14 +1,19 @@
 <div class="display-result-container">
     @if (this.progressService()) {
-        @for (item of this.progressService()?.items; track item) {
-            <div class="result-item">
-                <div>{{ item.key }}</div>
-                <div>{{ item.attempt }}</div>
-                <div>{{ item.lastAttempt }}</div>
-            </div>
+    @for (item of this.progressService()?.items; track item) {
+    <div class="result-item">
+        <span class="text">{{ item.key }}</span>
+        @if(item.attempt == "0") {
+        <mat-icon class="icon-color-success" aria-hidden="false" aria-label="Example home icon" fontIcon="check">
+        </mat-icon>
+        } @else {
+        <mat-icon class="icon-color-failure" aria-hidden="false" aria-label="Example home icon" fontIcon="cancel">
+        </mat-icon>
         }
-        <div></div>
+
+    </div>
+    }
     } @else {
-        <div>Nothing to display</div>
+    <div>Nothing to display</div>
     }
 </div>
