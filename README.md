@@ -20,3 +20,12 @@ ng serve
 
 Or used deployed version. Anything will do since it does not require any backend
 
+### Docker
+
+```
+docker build -t foreign-teacher:1.0 .
+docker run --rm -p 8040:8040 foreign-teacher:1.0
+
+http://localhost:8040
+```
+
